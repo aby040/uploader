@@ -1,6 +1,7 @@
 package net.aj.net.aj.github.uploader.controllers;
 
 import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class IndexController {
                 "Use the <code>/upload</code> path to try upload.";
     }
 
+    @CrossOrigin(origins = "http://localhost:3000/")
     @PostMapping("/upload")
     public Map<String, ArrayList<String>> upload(MultipartHttpServletRequest request) {
         Map<String, ArrayList<String>> response = new HashMap<String, ArrayList<String>>();
