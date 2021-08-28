@@ -25,6 +25,13 @@ public class IndexController {
     @PostMapping("/upload")
     public Map<String, ArrayList<String>> upload(MultipartHttpServletRequest request) {
         Map<String, ArrayList<String>> response = new HashMap<String, ArrayList<String>>();
+        Map<String, String[]> fields = request.getParameterMap();
+        fields.forEach((key, values) -> {
+            response.put(key, new ArrayList<String>());
+            for(String value: values) {
+                response.get(key).add(value);
+            }
+        });
         MultiValueMap<String, MultipartFile> fileMap = request.getMultiFileMap();
         fileMap.forEach((key, files) -> {
             response.put(key, new ArrayList<String>());
